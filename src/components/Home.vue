@@ -4,39 +4,32 @@
     <input v-model="msg">
 
     <ul>
-      <li v-for="product in products">
+      <li  v-bind:key="product.id" v-for="product in products">
       {{ product.title }} - {{ product.price }}</li>
     </ul>
-    {{jokes}}
+    <div v-if="jokes.length<=0?true:false">
+        Loading data...
+    </div>
+    <div v-else>{{jokes}}</div>
   </div>
 </template>
 
 <script>
 import shop from '@/api/shop'
-// import jocks from '@/api/jocks'
-// import store from '@/store/index'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
     }
   },
   computed: mapState({
     products: state => state.products.all,
     jokes: state => state.joke.all
-    // products(){
-    //   return store.state.products
-    // }
   }),
   created(){
-        // shop.getProducts(products =>{
-        //         store.commit('setProducts',products)
-        //       }
-        // )
-
         this.$store.dispatch('products/getAllProducts')
         this.$store.dispatch('joke/getAllJokes')
 
