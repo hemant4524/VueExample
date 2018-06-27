@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="coin-cointer">
     <p>Name: {{ coin.name }}</p>
     <p>Symbol: {{ coin.symbol }}</p>
     <p>Price (USD): {{ coin.price_usd }}</p>
@@ -39,3 +39,10 @@
     }
   }
 </script>
+<style scoped>
+@media only screen and (orientation: landscape) {
+    #coin-cointer {
+        background-color: lightblue;
+    }
+}
+</style>
